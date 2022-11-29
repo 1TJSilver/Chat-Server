@@ -2,10 +2,12 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Main {
-    public static final int PORT = 8080;
-    public static LinkedList<ChatService> serverList = new LinkedList<>();
+    public static final int PORT = 8765;
+    public static List<ChatService> serverList = new CopyOnWriteArrayList<>();
 
     public static void main(String[] args) throws IOException {
         ServerSocket server = new ServerSocket(PORT);
@@ -16,7 +18,6 @@ public class Main {
                 try {
                     serverList.add(new ChatService(socket));
                 } catch (IOException e) {
-
                     socket.close();
                 }
             }

@@ -23,13 +23,6 @@ public class ChatService extends Thread {
     public void run() {
         String word;
         try {
-
-            word = in.readLine();
-            try {
-                out.write(word + "\n");
-                out.flush();
-            } catch (IOException ignored) {
-            }
             try {
                 while (true) {
                     word = in.readLine();
@@ -38,7 +31,6 @@ public class ChatService extends Thread {
                         break;
                     }
                     System.out.println("Echoing: " + word);
-
                     for (ChatService chat : Main.serverList) {
                         chat.send(word);
                     }
